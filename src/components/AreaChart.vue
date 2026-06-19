@@ -30,13 +30,14 @@ const props = defineProps<{
   labels: string[]
   data: number[]
   highlightIndex?: number | null
+  label?: string
 }>()
 
 const chartData = computed(() => ({
   labels: props.labels,
   datasets: [
     {
-      label: 'Conversions',
+      label: props.label ?? 'New Members',
       data: props.data,
       borderColor: palette.accent,
       backgroundColor: palette.accentSoft,
@@ -59,7 +60,7 @@ const chartOptions: ChartOptions<'line'> = {
     legend: { display: false },
     tooltip: {
       callbacks: {
-        label: (ctx: TooltipItem<'line'>) => ` ${ctx.parsed.y ?? 0}%`,
+        label: (ctx: TooltipItem<'line'>) => ` ${(ctx.parsed.y ?? 0).toLocaleString()} ${props.label ?? 'New Members'}`,  
       },
     },
   },
@@ -69,7 +70,7 @@ const chartOptions: ChartOptions<'line'> = {
       grid: { color: palette.grid },
       ticks: {
         color: palette.ticks,
-        callback: (v: string | number) => `${v}%`,
+        callback: (v: string | number) => `${Number(v).toLocaleString()}`,
       },
     },
   },

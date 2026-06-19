@@ -28,13 +28,14 @@ const props = defineProps<{
   labels: string[]
   data: number[]
   highlightIndex?: number | null
+  label?: string
 }>()
 
 const chartData = computed(() => ({
   labels: props.labels,
   datasets: [
     {
-      label: 'Visitors',
+      label: props.label ?? 'Attendance',
       data: props.data,
       borderColor: palette.secondary,
       backgroundColor: palette.secondarySoft,
@@ -60,7 +61,7 @@ const chartOptions: ChartOptions<'line'> = {
     tooltip: {
       callbacks: {
         label: (ctx: TooltipItem<'line'>) =>
-          ` ${(ctx.parsed.y ?? 0).toLocaleString()} visitors`,
+          ` ${(ctx.parsed.y ?? 0).toLocaleString()} ${props.label ?? 'Attendance'}`,  
       },
     },
   },
@@ -70,7 +71,7 @@ const chartOptions: ChartOptions<'line'> = {
       grid: { color: palette.grid },
       ticks: {
         color: palette.ticks,
-        callback: (v: string | number) => `${Number(v) / 1000}k`,
+        callback: (v: string | number) => `${(Number(v) / 1000).toFixed(1)}k`,
       },
     },
   },

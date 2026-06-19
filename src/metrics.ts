@@ -1,10 +1,19 @@
 export interface MonthMetric {
   month: string
   year: number
+  facility: string
   revenue: number
-  visitors: number
-  conversions: number
-  orders: number
+  attendance: number
+  newMembers: number
+  membershipAvgMonths: number
+  groupClasses: number
+  individualSessions: number
+  dropIns: number
+  workoutsLogged: number
+  nutritionRevenue: number
+  privateTrainingRevenue: number
+  gearRevenue: number
+  supplementsRevenue: number
 }
 
 /** Cohesive chart color palette (indigo / teal / violet family). */

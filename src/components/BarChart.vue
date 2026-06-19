@@ -19,13 +19,14 @@ const props = defineProps<{
   labels: string[]
   data: number[]
   highlightIndex?: number | null
+  label?: string
 }>()
 
 const chartData = computed(() => ({
   labels: props.labels,
   datasets: [
     {
-      label: 'Revenue',
+      label: props.label ?? 'Revenue',
       data: props.data,
       backgroundColor: props.data.map((_, i) =>
         props.highlightIndex == null || props.highlightIndex === i
