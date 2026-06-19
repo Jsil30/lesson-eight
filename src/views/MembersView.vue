@@ -119,6 +119,9 @@ const goalColor: Record<string, string> = {
 }
 const membershipColor: Record<string, string> = { Basic: 'default', Standard: 'info', Premium: 'warning' }
 
+// ── Print ─────────────────────────────────────────────────────────────────────
+function printMembers() { window.print() }
+
 // ── Download CSV ──────────────────────────────────────────────────────────────
 function downloadCSV() {
   const header = 'ID,Name,Facility,Membership,Status,Goal,Joined,Duration (months),Age,Avg Visits/Mo,Group Classes,Private Sessions,Total Spend ($)'
@@ -156,7 +159,7 @@ function downloadCSV() {
         </v-tooltip>
         <v-tooltip text="Print member list">
           <template #activator="{ props: tip }">
-            <v-btn v-bind="tip" icon="mdi-printer" variant="tonal" size="small" @click="() => window.print()" />
+            <v-btn v-bind="tip" icon="mdi-printer" variant="tonal" size="small" @click="printMembers" />
           </template>
         </v-tooltip>
       </div>
